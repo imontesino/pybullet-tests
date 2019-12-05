@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!--
+    RoboticsLab, University Carlos III of Madrid
+
+    Complete visualization of TEO's arms
+
+    TODO: Review macros, properties and math to optimize the xacro file.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="insert_visualization_shoulder_pitch" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_pitch.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_pitch.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="insert_visualization_shoulder_roll" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_roll.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_roll.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="insert_visualization_shoulder_yaw" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.12126"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_yaw.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.12126"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_shoulder_yaw.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.27651"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_humerus.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.27651"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_humerus.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.28351"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_union_humerus_elbow.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.28351"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_union_humerus_elbow.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="insert_visualization_elbow_pitch" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_elbow_pitch.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_elbow_pitch.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.11324"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_elbow_link.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.11324"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_elbow_link.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.11324"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_union_elbow_wrist.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.11324"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_union_elbow_wrist.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="insert_visualization_wrist_yaw" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_yaw.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_yaw.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+  <xacro:macro name="insert_visualization_wrist_pitch" params="side reflect">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_pitch.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_pitch.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.056"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_sensorFT.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.056"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_wrist_sensorFT.stl"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 -0.056"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_hand.stl"/>
+      </geometry>
+      <material name="teoGray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.056"/>
+      <geometry>
+        <mesh filename="package://teo_description/meshes/arms/${side}_hand.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
+</robot>

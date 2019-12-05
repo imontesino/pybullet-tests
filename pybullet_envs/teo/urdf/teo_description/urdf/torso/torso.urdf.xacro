@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!-- 
+
+  ROS urdf definition of TEO torso using xacro
+
+  RoboticsLab, University Carlos III of Madrid
+
+  Joint names and properties are according to REP-120:
+  Coordinate Frames for Humanoids Robots
+
+  http://ros.org/reps/rep-0120.html
+
+-->
+
+<robot name="teo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<!-- *** TEO TORSO PARAMETERS -->
+  <xacro:property name="prop_torso_kg_motor_vol_unit" value="6229.073482" /> <!-- Relation Kg - Volume Unit -->
+
+
+<!-- Link lengths -->
+	<xacro:property name="waist_link1" value="0.0" />
+	<!--xacro:property name="waist_link2" value="0.287" /-->
+	<xacro:property name="waist_link2" value="0.1932" />
+	<xacro:property name="torso_link1" value="0.0" />
+	<xacro:property name="torso_link2" value="0.06" />
+  	<xacro:property name="chest_link1" value="0.0" />
+  	<xacro:property name="chest_link2" value="0.245" />
+	<xacro:property name="chest_link" value="0.305" /> 
+
+
+<!-- Minimum angles -->
+	<xacro:property name="waist_yaw_lower" value="${-45 * deg_to_rad}" />
+  <xacro:property name="waist_pitch_lower" value="${-10 * deg_to_rad}" />
+
+<!-- Maximum angles -->
+	<xacro:property name="waist_yaw_upper" value="${45 * deg_to_rad}" />
+	<xacro:property name="waist_pitch_upper" value="${10 * deg_to_rad}" />
+
+<!-- Effort limit of the angles -->
+	<xacro:property name="waist_yaw_effort" value="30.0" />
+	<xacro:property name="waist_pitch_effort" value="30.0" />
+
+
+<!-- Velocity limit of the angles-->
+	<xacro:property name="waist_yaw_velocity" value="3.0" />
+	<xacro:property name="waist_pitch_velocity" value="3.0" />
+
+<!-- Damping of the joints-->
+	<xacro:property name="waist_yaw_damping" value="0.0" />
+	<xacro:property name="waist_pitch_damping" value="0.0" />
+
+<!-- Friction of the joints--> <!-- IT'S NOT USED IN GAZEBO-->
+	<xacro:property name="waist_yaw_friction" value="0.0" />
+	<xacro:property name="waist_pitch_friction" value="0.0" />
+
+<!-- Joint reductions-->
+	<xacro:property name="waist_yaw_reduction" value="1.0" />
+	<xacro:property name="waist_pitch_reduction" value="1.0" />
+
+
+<!-- *** TORSO TREE -->
+
+  <!-- Links -->
+  <link name="waist" >
+    <inertial>
+      <origin xyz="0.0 0.0 0.030531" rpy="0 0 0"/>
+      <!-- <origin xyz="-0.011195 0.000002 0.030531" rpy="0 0 0"/> -->
+      <mass value="1.0"/>
+      <inertia
+        ixx="1.672965e-2" ixy="-4.1e-7" ixz="-4.0359e-4"
+        iyy="8.75441e-3" iyz="8.0e-8"
+        izz="0.020584" />
+    </inertial>
+<!--     <inertial>
+      <origin xyz="0.0 0.0 0.57136" rpy="0 0 0"/>
+      <mass value="5.7044"/>
+      <inertia
+        ixx="0.019" ixy="0.000" ixz="0.000"
+        iyy="0.018" iyz="0.000"
+        izz="0.008" />
+    </inertial> -->
+<!--     <inertial>
+      <origin xyz="-0.011195 0.000002 0.030531" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia
+        ixx="1.672965e-5" ixy="-4.1e-10" ixz="-4.0359e-7"
+        iyy="8.75441e-6" iyz="8.0e-11"
+        izz="0.000020584" />
+    </inertial> -->
+    <xacro:insert_visualization_waist/>
+  </link>
+
+  <link name="waist_yaw_link" >
+    <inertial>
+      <origin xyz="0.0 0.0 -0.024630" rpy="0 0 0"/>
+      <!-- <origin xyz="-0.004091 -0.001037 -0.024630" rpy="0 0 0"/> -->
+      <!-- <mass value="${prop_torso_kg_motor_vol_unit*0.000142}"/> -->
+      <mass value="1.0"/>
+ <!--     <inertia
+			  ixx="0.66667" ixy="-0.25" ixz="-0.25"
+				iyy="0.66667" iyz="-0.25"
+				izz="0.66667" /> -->
+<!--       <inertia
+        ixx="2.8026e-4" ixy="-2.9e-7" ixz="-4.22e-6"
+        iyy="1.275e-4" iyz="4.4e-7"
+        izz="2.0857e-4" /> -->
+
+      <inertia
+        ixx="0.028026e-2" ixy="-0.000029e-2" ixz="-0.000422e-2"
+        iyy="0.012750e-2" iyz="0.000044e-2"
+        izz="0.020857e-2" />
+    </inertial>
+    <xacro:insert_visualization_waist_yaw/>
+  </link>
+
+  <link name="waist_pitch_link" >
+    <inertial>
+      <origin xyz="0.038788 -0.000008 0.221233" rpy="0 0 0"/>
+      <!-- <origin xyz="0.0 -0.0 0.221233" rpy="0 0 0"/> -->
+      <mass value="1.0"/>
+      <!-- <inertia
+        ixx="0.3563817" ixy="-5.5E-6" ixz="-0.014295"
+        iyy="0.1422663" iyz="-2.205e-5" 
+        izz="0.2704611" />
+    </inertial> -->
+    <inertia
+        ixx="0.100973e-2" ixy="0.0" ixz="0.0"
+        iyy="0.019175e-2" iyz="0.0" 
+        izz="0.100972e-2" />
+    </inertial>
+    <xacro:insert_visualization_waist_pitch/>
+    <xacro:insert_visualization_torso/>
+  </link>
+
+
+  <!-- Joints -->
+  <joint name="waist_yaw" type="revolute">
+    <parent link="waist"/>
+    <child link="waist_yaw_link"/>
+    <origin xyz="${waist_link1} 0 ${waist_link2}" rpy="0 0 0" />
+    <axis xyz="0 0 1"/>
+    <limit velocity="${waist_yaw_velocity}" effort="${waist_yaw_effort}" lower="${waist_yaw_lower}" upper="${waist_yaw_upper}"/>
+  </joint>
+
+  <joint name="waist_pitch" type="revolute">
+    <parent link="waist_yaw_link"/>
+    <child link="waist_pitch_link"/>
+    <origin xyz="-${torso_link1} 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0"/>
+    <limit velocity="${waist_pitch_velocity}" effort="${waist_pitch_effort}" lower="${waist_pitch_lower}" upper="${waist_pitch_upper}"/>
+  </joint>
+
+  <xacro:waist_joint_simple_transmission axis="yaw" reduction="${waist_yaw_reduction}"/>
+  <xacro:waist_joint_simple_transmission axis="pitch" reduction="${waist_pitch_reduction}"/>
+</robot>

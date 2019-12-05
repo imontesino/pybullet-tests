@@ -1,0 +1,20 @@
+<?xml version="1.0"?>                                                                                 
+<!--                                                                                                  
+                                                                                                      
+  ROS xacro colors used in the generation of TEO humanoid robot URDF using xacro                                               
+                                                                                                      
+  RoboticsLab, University Carlos III of Madrid                                                        
+                                                                                                      
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <material name="teoGray">
+    <color rgba="0.6 0.6 0.6 1.0"/>
+  </material>
+  <material name="teoBlue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+  </material>
+  <material name="teoBlack">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+</robot>

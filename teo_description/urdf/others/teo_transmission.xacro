@@ -1,0 +1,63 @@
+<?xml version="1.0"?>                                                                                 
+<!--                                                                                                  
+                                                                                                      
+  ROS xacro transmission macros used in the generation of TEO humanoid robot URDF using xacro                                               
+                                                                                                      
+  RoboticsLab, University Carlos III of Madrid                                                        
+                                                                                                      
+-->
+
+<robot name="teo" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:macro name="limb_joint_simple_transmission" params="name side axis reduction effortTransmission velocityTransmission positionTransmission" >
+		<xacro:if value="${effortTransmission}">
+			<transmission name="${side}_${name}_${axis}_trans">
+				<type>transmission_interface/SimpleTransmission</type> 
+				<joint name="${side}_${name}_${axis}">
+					<hardwareInterface>EffortJointInterface</hardwareInterface>
+	      </joint>
+				<actuator name="${side}_${name}_${axis}_motor" > 
+					<hardwareInterface>EffortJointInterface</hardwareInterface>
+					<mechanicalReduction>${reduction}</mechanicalReduction>
+				</actuator> 
+			</transmission> 
+    </xacro:if>
+    <xacro:if value="${velocityTransmission}">
+			<transmission name="${side}_${name}_${axis}_trans">
+				<type>transmission_interface/SimpleTransmission</type> 
+				<joint name="${side}_${name}_${axis}">
+					<hardwareInterface>VelocityJointInterface</hardwareInterface>
+	      </joint>
+				<actuator name="${side}_${name}_${axis}_motor" > 
+					<hardwareInterface>VelocityJointInterface</hardwareInterface>
+					<mechanicalReduction>${reduction}</mechanicalReduction>
+				</actuator> 
+			</transmission> 
+    </xacro:if>	
+    <xacro:if value="${positionTransmission}">
+			<transmission name="${side}_${name}_${axis}_trans">
+				<type>transmission_interface/SimpleTransmission</type> 
+				<joint name="${side}_${name}_${axis}">
+					<hardwareInterface>PositionJointInterface</hardwareInterface>
+	      </joint>
+				<actuator name="${side}_${name}_${axis}_motor" > 
+					<hardwareInterface>PositionJointInterface</hardwareInterface>
+					<mechanicalReduction>${reduction}</mechanicalReduction>
+				</actuator> 
+			</transmission> 
+    </xacro:if>	
+
+
+	</xacro:macro> 
+
+	<xacro:macro name="waist_joint_simple_transmission" params="axis reduction" >
+		<transmission name="waist_${axis}_trans"> 
+			<type>transmission_interface/SimpleTransmission</type> 
+			<joint name="waist_${axis}">
+				<hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+			<actuator name="waist_${axis}_motor" > 
+				<mechanicalReduction>${reduction}</mechanicalReduction> 
+			</actuator> 
+		</transmission> 
+	</xacro:macro> 
+</robot>
