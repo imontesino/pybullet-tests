@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC   -shared  -o screwIK.cpython-36m-x86_64-linux-gnu.so CMakeFiles/screwIK.dir/screwIK.cpp.o -flto 

@@ -1,3 +1,0 @@
-/home/ignamonte/repos/pybullet-tests/source/build/CMakeFiles/rebuild_cache.dir
-/home/ignamonte/repos/pybullet-tests/source/build/CMakeFiles/screwIK.dir
-/home/ignamonte/repos/pybullet-tests/source/build/CMakeFiles/edit_cache.dir

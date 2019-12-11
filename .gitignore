@@ -1,4 +1,4 @@
-source/build*
+source/build*/
 scripts/gait_traj*
 scripts/l_joint*
 scripts/r_joint*
