@@ -4,22 +4,22 @@ Version controll and sync for personal vesion of the teo-pybullet-version
 ## Requirements
 
 Jupyter Notebooks
-´´´bash
+```bash
 pip install jupyterlab
-´´´
+```
 
 PyBullet
-´´´bash
+```bash
 pip install pybullet
-´´´
+```
 
 CMake
-´´´bash
+```bash
 sudo apt install cmake
-´´´
+```
 
 Eigen
-´´´bash
+```bash
 cd
 mkdir -p repos && cd repos
 git clone https://gitlab.com/libeigen/eigen.git
@@ -27,7 +27,7 @@ cd eigen
 cd build_dir
 cmake ..
 sudo make install
-´´´
+```
 
 Pytest
 ```bash
@@ -35,7 +35,7 @@ pip install pytest
 ```
 
 pybind11
-´´´bash
+```bash
 cd
 mkdir -p repos && cd repos
 git clone https://github.com/pybind/pybind11.git
@@ -43,7 +43,7 @@ cd pybind
 cd build
 cmake ..
 sudo make install
-´´´
+```
 
 
 ## Install
@@ -52,6 +52,7 @@ Clone the repo
 ```bash
 mkdir -p repos && cd repos
 git clone https://github.com/imontesino/pybullet-tests.git
+```
 
 
 Compile the inverse kinematics python module
