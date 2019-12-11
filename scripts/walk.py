@@ -469,8 +469,8 @@ for t in range(n_timesteps):
     leftLegAngles =ik.ll_com_from_foot(com_r_t ,orientation)
     rightLegAngles=ik.rl_com_from_foot(com_l_t ,orientation)
     
-    l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-    r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+    l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+    r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
     com_plot.append(com_l_t)
     
     
@@ -492,7 +492,7 @@ for t in range(n_timesteps):
                                 controlMode=mode,
                                 forces=maxForces,
                                 targetVelocities = maxVelocities,
-                                targetPositions = targetPosModified - targetPosOffset
+                                targetPositions = targetPos
                                )
  
     l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
@@ -665,8 +665,8 @@ for i in range(n_steps):
         rightLegAngles = ik.rl_com_from_foot(com_r_t ,orientation)
         leftLegAngles  = ik.ll_com_from_foot(com_l_t ,orientation)
 
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         com_plot.append(com_l_t)
         
         test_measured.append(test_function())
@@ -679,12 +679,10 @@ for i in range(n_steps):
             if (not np.isnan(leftLegAngles[i])) and ( leftLegAngles[i] > p.getJointInfo(teoId, index)[8] and leftLegAngles[i] < p.getJointInfo(teoId, index)[9]):
                 targetPos[index]=leftLegAngles[i] 
         
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
+
        
         
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
+
         
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
@@ -693,7 +691,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
         r_angles_plot.append([a[0] for a in p.getJointStates(teoId, rightLegIndices)])
@@ -732,8 +730,8 @@ for i in range(n_steps):
         
         leftLegAngles=ik.ll_com_from_foot(com_l_t ,orientation)
         
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         rfoot_plot.append(rfoot_trajectory)
         com_plot.append(com_r_t)
         
@@ -744,12 +742,10 @@ for i in range(n_steps):
                 targetPos[index]=leftLegAngles[i]
 
         
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
+
        
         
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
+
         
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
@@ -758,7 +754,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
 
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
@@ -792,8 +788,8 @@ for i in range(n_steps):
         
         leftLegAngles=ik.ll_com_from_foot(com_l_t ,orientation)
 
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         rfoot_plot.append(rfoot_trajectory + rfoot_trajectory0)
         com_plot.append(com_r_t)
         
@@ -803,12 +799,10 @@ for i in range(n_steps):
             if (not np.isnan(leftLegAngles[i])) and ( leftLegAngles[i] > p.getJointInfo(teoId, index)[8] and leftLegAngles[i] < p.getJointInfo(teoId, index)[9]):
                 targetPos[index]=leftLegAngles[i]
 
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
+
        
         
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
+
         
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
@@ -817,7 +811,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
 
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
@@ -867,8 +861,8 @@ for i in range(n_steps):
         rightLegAngles = ik.rl_com_from_foot(com_r_t ,orientation)
         leftLegAngles  = ik.ll_com_from_foot(com_l_t ,orientation)
 
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         com_plot.append(com_l_t)
         
         test_measured.append(test_function())
@@ -881,12 +875,10 @@ for i in range(n_steps):
             if (not np.isnan(leftLegAngles[i])) and ( leftLegAngles[i] > p.getJointInfo(teoId, index)[8] and leftLegAngles[i] < p.getJointInfo(teoId, index)[9]):
                 targetPos[index]=leftLegAngles[i] 
         
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
+
        
         
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
+
         
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
@@ -895,7 +887,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
                                    
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
@@ -931,8 +923,8 @@ for i in range(n_steps):
         
         rightLegAngles=ik.rl_com_from_foot(com_r_t ,orientation)
         
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         rfoot_plot.append(rfoot_trajectory)
         com_plot.append(com_r_t)
         
@@ -942,14 +934,6 @@ for i in range(n_steps):
             if (not np.isnan(rightLegAngles[i])) and (rightLegAngles[i] > p.getJointInfo(teoId, index)[8] and rightLegAngles[i] < p.getJointInfo(teoId, index)[9]):
                 targetPos[index]=rightLegAngles[i]
 
-        
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
-       
-        
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
-        
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
         p.setJointMotorControlArray(teoId,
@@ -957,7 +941,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
                                    
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
@@ -989,8 +973,8 @@ for i in range(n_steps):
         
         rightLegAngles=ik.rl_com_from_foot(com_r_t ,orientation)
 
-        l_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in leftLegIndices])
-        r_sent_angles_plot.append([targetPos[index] - targetPosOffset[index] for index in rightLegIndices])
+        l_sent_angles_plot.append([targetPos[index] for index in leftLegIndices])
+        r_sent_angles_plot.append([targetPos[index] for index in rightLegIndices])
         rfoot_plot.append(rfoot_trajectory + rfoot_trajectory0)
         com_plot.append(com_r_t)
         
@@ -1000,12 +984,10 @@ for i in range(n_steps):
             if (not np.isnan(rightLegAngles[i])) and (rightLegAngles[i] > p.getJointInfo(teoId, index)[8] and rightLegAngles[i] < p.getJointInfo(teoId, index)[9]):
                 targetPos[index]=rightLegAngles[i]
 
-        l_hip_roll_torque = p.getJointState(teoId, name2id[b'l_hip_roll'])[3]
-        r_hip_roll_torque = p.getJointState(teoId, name2id[b'r_hip_roll'])[3]
+
        
         
-        targetPosOffset[name2id[b'l_hip_roll']] = torqueToPosOffs(l_hip_roll_torque)
-        targetPosOffset[name2id[b'r_hip_roll']] = torqueToPosOffs(r_hip_roll_torque)
+
         
         targetPosModified = np.array(targetPos) + np.array(targetPosOffset)
         
@@ -1014,7 +996,7 @@ for i in range(n_steps):
                                     controlMode=mode,
                                     forces=maxForces,
                                     targetVelocities = maxVelocities,
-                                    targetPositions = targetPosModified - targetPosOffset
+                                    targetPositions = targetPos
                                    )
                                    
         l_angles_plot.append([a[0] for a in p.getJointStates(teoId,  leftLegIndices)])
