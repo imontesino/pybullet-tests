@@ -61,10 +61,3 @@ delta=((noap*Hst0Inv*cart2hom(f))[0:3,:]-k).norm()
 theta3=symPK3(xi3,f,k,r,delta)[1]
 
 print(IK.PK3(xi1,p,q,r, delta))
-
-
-'''
-
-
-
-'''
